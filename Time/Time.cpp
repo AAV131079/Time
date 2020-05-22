@@ -1,5 +1,6 @@
 // Include files
 #include "Time.h"
+#include <iostream>
 
 // Macroses
 #define DAY 24
@@ -194,17 +195,17 @@ Time :: ~Time()
 Time & Time :: operator = (const Time & Time_incoming)
 {
 	// Hour
-	this->SetHour(Time_incoming._hour);
+	this -> SetHour(Time_incoming._hour);
 	// Minute
-	this->SetMinute(Time_incoming._minute);
+	this -> SetMinute(Time_incoming._minute);
 	// Second
-	this->SetSecond(Time_incoming._second);
+	this -> SetSecond(Time_incoming._second);
 	// Type clock
-	this->SetTypeClock(Time_incoming._type_clock);
+	this -> SetTypeClock(Time_incoming._type_clock);
 	// Midday and midnight designations
-	this->SetAM_PM(Time_incoming._am_pm);
+	this -> SetAM_PM(Time_incoming._am_pm);
 	// Time comversion
-	this->SetTypeTime(Time_incoming._type_time);
+	this -> SetTypeTime(Time_incoming._type_time);
 	// Function return value
 	return *this;
 }
@@ -213,17 +214,17 @@ Time & Time :: operator = (const Time & Time_incoming)
 Time & Time ::operator = (const Time && Time_incoming)
 {
 	// Hour
-	this->SetHour(Time_incoming._hour);
+	this -> SetHour(Time_incoming._hour);
 	// Minute
-	this->SetMinute(Time_incoming._minute);
+	this -> SetMinute(Time_incoming._minute);
 	// Second
-	this->SetSecond(Time_incoming._second);
+	this -> SetSecond(Time_incoming._second);
 	// Type clock
-	this->SetTypeClock(Time_incoming._type_clock);
+	this -> SetTypeClock(Time_incoming._type_clock);
 	// Midday and midnight designations
-	this->SetAM_PM(Time_incoming._am_pm);
+	this -> SetAM_PM(Time_incoming._am_pm);
 	// Time comversion
-	this->SetTypeTime(Time_incoming._type_time);
+	this -> SetTypeTime(Time_incoming._type_time);
 	// Function return value
 	return *this;
 }
@@ -236,17 +237,17 @@ Time Time :: operator + (Time & Time_incoming)
 	// New time
 	Time TemporaryTime;
 	// Fold seconds
-	if ((this->_second + Time_incoming._second) < MINUTE)
+	if ((this -> _second + Time_incoming._second) < MINUTE)
 	{
 		// Seconds
-		TemporaryTime._second = this->_second + Time_incoming._second;
+		TemporaryTime._second = this -> _second + Time_incoming._second;
 	}
-	else if ((this->_second + Time_incoming._second) >= MINUTE)
+	else if ((this -> _second + Time_incoming._second) >= MINUTE)
 	{
 		// How many minutes
-		minutes = (int)((this->_second + Time_incoming._second) / MINUTE);
+		minutes = (int)((this -> _second + Time_incoming._second) / MINUTE);
 		// Seconds
-		TemporaryTime._second = (this->_second + Time_incoming._second) - MINUTE * minutes;
+		TemporaryTime._second = (this -> _second + Time_incoming._second) - MINUTE * minutes;
 		// Minutes
 		TemporaryTime._minute = minutes;
 		// Chech minutes
@@ -269,17 +270,17 @@ Time Time :: operator + (Time & Time_incoming)
 		}
 	}
 	// Fold minutes
-	if ((this->_minute + Time_incoming._minute + TemporaryTime._minute) < HOUR)
+	if ((this -> _minute + Time_incoming._minute + TemporaryTime._minute) < HOUR)
 	{
 		// Minutes
-		TemporaryTime._minute = this->_minute + Time_incoming._minute + TemporaryTime._minute;
+		TemporaryTime._minute = this -> _minute + Time_incoming._minute + TemporaryTime._minute;
 	}
-	else if ((this->_minute + Time_incoming._minute + TemporaryTime._minute) >= HOUR)
+	else if ((this -> _minute + Time_incoming._minute + TemporaryTime._minute) >= HOUR)
 	{
 		// How many hours
-		hours = (int)((this->_minute + Time_incoming._minute + TemporaryTime._minute) / HOUR);
+		hours = (int)((this -> _minute + Time_incoming._minute + TemporaryTime._minute) / HOUR);
 		// MInutes
-		TemporaryTime._minute = this->_minute + Time_incoming._minute + TemporaryTime._minute - HOUR * hours;
+		TemporaryTime._minute = this -> _minute + Time_incoming._minute + TemporaryTime._minute - HOUR * hours;
 		// Hours
 		TemporaryTime._hour = hours;
 		// Check hours
@@ -292,17 +293,17 @@ Time Time :: operator + (Time & Time_incoming)
 		}
 	}
 	// Fold hours
-	if ((this->_hour + Time_incoming._hour + TemporaryTime._hour) < DAY)
+	if ((this -> _hour + Time_incoming._hour + TemporaryTime._hour) < DAY)
 	{
 		// Hours
-		TemporaryTime._hour += (this->_hour + Time_incoming._hour);
+		TemporaryTime._hour += (this -> _hour + Time_incoming._hour);
 	}
-	else if ((this->_hour + Time_incoming._hour + TemporaryTime._hour) >= DAY)
+	else if ((this -> _hour + Time_incoming._hour + TemporaryTime._hour) >= DAY)
 	{
 		// How many days
-		days = (int)((this->_hour + Time_incoming._hour + TemporaryTime._hour) / DAY);
+		days = (int)((this -> _hour + Time_incoming._hour + TemporaryTime._hour) / DAY);
 		// Hours
-		TemporaryTime._hour = (this->_hour + Time_incoming._hour + TemporaryTime._hour) - DAY * days;
+		TemporaryTime._hour = (this -> _hour + Time_incoming._hour + TemporaryTime._hour) - DAY * days;
 	}
 	// Function return value
 	return TemporaryTime;
@@ -314,11 +315,11 @@ Time Time :: operator + (const s_hour * my_hours)
 	// New time
 	Time TemporaryTime;
 	// Fold hours
-	TemporaryTime._hour = this->_hour + my_hours->hour;
+	TemporaryTime._hour = this -> _hour + my_hours -> hour;
 	// Minutrs
-	TemporaryTime._minute = this->_minute;
+	TemporaryTime._minute = this -> _minute;
 	// Seconds
-	TemporaryTime._second = this->_second;
+	TemporaryTime._second = this -> _second;
 	// Function return value
 	return TemporaryTime;
 }
@@ -331,22 +332,22 @@ Time Time :: operator + (const s_minute * my_minutes)
 	// New time
 	Time TemporaryTime;
 	// Seconds
-	TemporaryTime._second = this->_second;
+	TemporaryTime._second = this -> _second;
 	// Fold minutes
-	if ((this->_minute + my_minutes->minute) < HOUR)
+	if ((this -> _minute + my_minutes -> minute) < HOUR)
 	{
 		// Minutes
-		TemporaryTime._minute = this->_minute + my_minutes->minute;
+		TemporaryTime._minute = this -> _minute + my_minutes -> minute;
 	}
-	else if ((this->_minute + my_minutes->minute) >= HOUR)
+	else if ((this -> _minute + my_minutes -> minute) >= HOUR)
 	{
 		// How many hours
-		hours = (int)((this->_minute + my_minutes->minute) / HOUR);
+		hours = (int)((this -> _minute + my_minutes -> minute) / HOUR);
 		// MInutes
-		TemporaryTime._minute = this->_minute + my_minutes->minute - HOUR * hours;
+		TemporaryTime._minute = this -> _minute + my_minutes -> minute - HOUR * hours;
 	}
 	// Fold hours
-	TemporaryTime._hour = this->_hour + hours;
+	TemporaryTime._hour = this -> _hour + hours;
 	// Function return value
 	return TemporaryTime;
 }
@@ -359,17 +360,17 @@ Time Time :: operator + (const s_second * my_seconds)
 	// New time
 	Time TemporaryTime;
 	// Fold seconds
-	if ((this->_second + my_seconds->second) < MINUTE)
+	if ((this -> _second + my_seconds -> second) < MINUTE)
 	{
 		// Seconds
-		TemporaryTime._second = this->_second + my_seconds->second;
+		TemporaryTime._second = this -> _second + my_seconds -> second;
 	}
-	else if ((this->_second + my_seconds->second) >= MINUTE)
+	else if ((this -> _second + my_seconds -> second) >= MINUTE)
 	{
 		// How many minutes
-		minutes = (int)((this->_second + my_seconds->second) / MINUTE);
+		minutes = (int)((this -> _second + my_seconds -> second) / MINUTE);
 		// Seconds
-		TemporaryTime._second = (this->_second + my_seconds->second) - MINUTE * minutes;
+		TemporaryTime._second = (this -> _second + my_seconds -> second) - MINUTE * minutes;
 		// Minutes
 		TemporaryTime._minute = minutes;
 		// Chech minutes
@@ -384,9 +385,9 @@ Time Time :: operator + (const s_second * my_seconds)
 		}
 	}
 	// Fold minutes
-	TemporaryTime._minute += this->_minute;
+	TemporaryTime._minute += this -> _minute;
 	// Fold hours
-	TemporaryTime._hour += this->_hour;
+	TemporaryTime._hour += this -> _hour;
 	// Function return value
 	return TemporaryTime;
 }
@@ -397,11 +398,11 @@ Time Time :: operator - (Time & Time_incoming)
 	// New time
 	Time TemporaryTime;
 	// Subtract hours
-	TemporaryTime._hour = ((this->_hour - Time_incoming._hour) >= 0) ? this->_hour - Time_incoming._hour : -(this->_hour - Time_incoming._hour);
+	TemporaryTime._hour = ((this -> _hour - Time_incoming._hour) >= 0) ? this -> _hour - Time_incoming._hour : -(this -> _hour - Time_incoming._hour);
 	// Subtract minutes
-	TemporaryTime._minute = ((this->_minute - Time_incoming._minute) >= 0) ? this->_minute - Time_incoming._minute : -(this->_minute - Time_incoming._minute);
+	TemporaryTime._minute = ((this -> _minute - Time_incoming._minute) >= 0) ? this -> _minute - Time_incoming._minute : -(this -> _minute - Time_incoming._minute);
 	// Subtract seconds
-	TemporaryTime._second = ((this->_second - Time_incoming._second) >= 0) ? this->_second - Time_incoming._second : -(this->_second - Time_incoming._second);
+	TemporaryTime._second = ((this -> _second - Time_incoming._second) >= 0) ? this -> _second - Time_incoming._second : -(this -> _second - Time_incoming._second);
 	// Function return value
 	return TemporaryTime;
 }
@@ -412,11 +413,11 @@ Time Time :: operator - (const s_hour * my_hours)
 	// New time
 	Time TemporaryTime;
 	// Hours
-	TemporaryTime._hour = ((this->_hour - my_hours->hour) >= 0) ? this->_hour - my_hours->hour : -(this->_hour - my_hours->hour);
+	TemporaryTime._hour = ((this -> _hour - my_hours -> hour) >= 0) ? this -> _hour - my_hours -> hour : -(this -> _hour - my_hours -> hour);
 	// Minutrs
-	TemporaryTime._minute = this->_minute;
+	TemporaryTime._minute = this -> _minute;
 	// Minutrs
-	TemporaryTime._second = this->_second;
+	TemporaryTime._second = this -> _second;
 	// Function return value
 	return TemporaryTime;
 }
@@ -429,44 +430,44 @@ Time Time :: operator - (const s_minute * my_minutes)
 	// New time
 	Time TemporaryTime;
 	// Seconds
-	TemporaryTime._second = this->_second;
+	TemporaryTime._second = this -> _second;
 	// Subtract minutes
-	if (my_minutes->minute < HOUR)
+	if (my_minutes -> minute < HOUR)
 	{
-		if (my_minutes->minute <= this->_minute)
+		if (my_minutes -> minute <= this -> _minute)
 		{
 			// Minutes
-			TemporaryTime._minute = this->_minute - my_minutes->minute;
+			TemporaryTime._minute = this -> _minute - my_minutes -> minute;
 			// Hours
-			TemporaryTime._hour = this->_hour;
+			TemporaryTime._hour = this -> _hour;
 		}
 		else
 		{
 			// Minutes
-			TemporaryTime._minute = HOUR + (this->_minute - my_minutes->minute);
+			TemporaryTime._minute = HOUR + (this -> _minute - my_minutes -> minute);
 			// Hours
-			TemporaryTime._hour = this->_hour - 1;
+			TemporaryTime._hour = this -> _hour - 1;
 		}
 	}
-	else if (my_minutes->minute >= HOUR)
+	else if (my_minutes -> minute >= HOUR)
 	{
 		// How many hours
-		hours = (int)(my_minutes->minute / HOUR);
+		hours = (int)(my_minutes -> minute / HOUR);
 		// Minutes
-		if (my_minutes->minute - HOUR * hours <= this->_minute)
+		if (my_minutes -> minute - HOUR * hours <= this -> _minute)
 		{
 			// Minutes
-			TemporaryTime._minute = this->_minute - my_minutes->minute - HOUR * hours;
+			TemporaryTime._minute = this -> _minute - my_minutes -> minute - HOUR * hours;
 		}
 		else
 		{
 			// Minutes
-			TemporaryTime._minute = HOUR + (this->_minute - (my_minutes->minute - HOUR * hours));
+			TemporaryTime._minute = HOUR + (this -> _minute - (my_minutes -> minute - HOUR * hours));
 			// Minutes
 			++hours;
 		}
 		// Hours
-		TemporaryTime._hour = ((this->_hour - hours) >= 0) ? this->_hour - hours : -(this->_hour - hours);
+		TemporaryTime._hour = ((this -> _hour - hours) >= 0) ? this -> _hour - hours : -(this -> _hour - hours);
 	}
 	// Function return value
 	return TemporaryTime;
@@ -480,41 +481,41 @@ Time Time :: operator - (const s_second * my_seconds)
 	// New time
 	Time TemporaryTime;
 	// Subtract seconds
-	if (my_seconds->second < MINUTE)
+	if (my_seconds -> second < MINUTE)
 	{
-		if (my_seconds->second <= this->_second)
+		if (my_seconds -> second <= this -> _second)
 		{
 			// Seconds
-			TemporaryTime._second = this->_second - my_seconds->second;
+			TemporaryTime._second = this -> _second - my_seconds -> second;
 			// Minutes
-			TemporaryTime._minute = this->_minute;
+			TemporaryTime._minute = this -> _minute;
 			// Hours
-			TemporaryTime._hour = this->_hour;
+			TemporaryTime._hour = this -> _hour;
 		}
 		else
 		{
 			// Seconds
-			TemporaryTime._second = MINUTE + (this->_second - my_seconds->second);
+			TemporaryTime._second = MINUTE + (this -> _second - my_seconds -> second);
 			// Minutes
-			TemporaryTime._minute = this->_minute - 1;
+			TemporaryTime._minute = this -> _minute - 1;
 			// Hours
-			TemporaryTime._hour = this->_hour;
+			TemporaryTime._hour = this -> _hour;
 		}
 	}
-	else if (my_seconds->second >= MINUTE)
+	else if (my_seconds -> second >= MINUTE)
 	{
 		// How many minutes
-		minutes = (int)(my_seconds->second / MINUTE);
+		minutes = (int)(my_seconds -> second / MINUTE);
 		// Seconds
-		if (my_seconds->second - MINUTE * minutes <= this->_second)
+		if (my_seconds -> second - MINUTE * minutes <= this -> _second)
 		{
 			// Seconds
-			TemporaryTime._second = this->_second - (my_seconds->second - MINUTE * minutes);
+			TemporaryTime._second = this -> _second - (my_seconds -> second - MINUTE * minutes);
 		}
 		else
 		{
 			// Seconds
-			TemporaryTime._second = MINUTE + (this->_second - (my_seconds->second - MINUTE * minutes));
+			TemporaryTime._second = MINUTE + (this -> _second - (my_seconds -> second - MINUTE * minutes));
 			// Minutes
 			++minutes;
 		}
@@ -522,94 +523,248 @@ Time Time :: operator - (const s_second * my_seconds)
 		if (minutes < HOUR)
 		{
 			// Minutes
-			TemporaryTime._minute = ((this->_minute - minutes) >= 0) ? this->_minute - minutes : -(this->_minute - minutes);
+			TemporaryTime._minute = ((this -> _minute - minutes) >= 0) ? this -> _minute - minutes : -(this -> _minute - minutes);
 			// Hours
-			TemporaryTime._hour = this->_hour;
+			TemporaryTime._hour = this -> _hour;
 		}
 		else if (minutes >= HOUR)
 		{
 			// How many hours
 			hours = (int)(minutes / HOUR);
 			// Minutes
-			TemporaryTime._minute = ((this->_minute - (minutes - HOUR * hours)) >= 0) ? this->_minute - (minutes - HOUR * hours) : -(this->_minute - (minutes - HOUR * hours));
+			TemporaryTime._minute = ((this -> _minute - (minutes - HOUR * hours)) >= 0) ? this -> _minute - (minutes - HOUR * hours) : -(this -> _minute - (minutes - HOUR * hours));
 			// Hours
-			TemporaryTime._hour = ((this->_hour - hours) >= 0) ? this->_hour - hours : -(this->_hour - hours);
+			TemporaryTime._hour = ((this -> _hour - hours) >= 0) ? this -> _hour - hours : -(this -> _hour - hours);
 		}
 	}
 	// Function return value
 	return TemporaryTime;
 }
 
-void Time::SetHour(int hour)
+// Set hours
+void Time :: SetHour(int hour)
 {
+	// Hour
+	this -> _hour = hour;
 }
 
-void Time::SetMinute(int minute)
+// Set minutes
+void Time :: SetMinute(int minute)
 {
+	// Minute
+	this -> _minute = minute;
 }
 
-void Time::SetSecond(int second)
+// Set seconds
+void Time :: SetSecond(int second)
 {
+	// Second
+	this -> _second = second;
 }
 
-void Time::SetTypeClock(int typeclock)
+// Set clock type
+void Time :: SetTypeClock(int typeclock)
 {
+	// Clock type
+	this -> _type_clock = typeclock;
 }
 
-void Time::SetAM_PM(int am_pm)
+void Time :: SetAM_PM(int am_pm)
 {
+	// Midday and midnight designations
+	this -> _am_pm = am_pm;
 }
 
-void Time::SetTypeTime(int type_time)
+void Time :: SetTypeTime(int type_time)
 {
+	// Type time
+	this -> _type_time = type_time;
 }
 
-int Time::GetHour()
+// Get hours
+int Time :: GetHour()
 {
-	return 0;
+	// Function return value
+	return this -> _hour;
 }
 
-int Time::GetMinute()
+// Get minutes
+int Time :: GetMinute()
 {
-	return 0;
+	// Function return value
+	return this -> _minute;
+}
+// Get seconds
+int Time :: GetSecond()
+{// Function return value
+	return this -> _second;
 }
 
-int Time::GetSecond()
+// Get clock type
+int Time :: GetTypeClock()
 {
-	return 0;
+	// Function return value
+	return this -> _type_clock;
 }
 
-int Time::GetTypeClock()
+int Time :: GetAMPM()
 {
-	return 0;
+	// Function return value
+	return this -> _am_pm;
 }
 
-int Time::GetAMPM()
+int Time :: GetTypeTime()
 {
-	return 0;
+	// Function return value
+	return this -> _type_time;
 }
 
-int Time::GetTypeTime()
+// Change time format
+void Time :: ChangeTimeFormat()
 {
-	return 0;
+	if (this -> GetTypeClock() == 1)
+	{
+		// Set new type clock
+		this -> SetTypeClock(2);
+	}
+	else
+	{
+		// Set new type clock
+		this -> SetTypeClock(1);
+	}
 }
 
-void Time::ChangeTimeFormat()
+// Change time zone
+void Time :: ChangeTimeZone(int hour, int minute)
 {
+	// Variables
+	int days{}, hours{};
+	//	Add 2 hours
+	if (hour > 0)
+	{
+		hour -= 2;
+	}
+	else if (hour <= 0)
+	{
+		hour -= 2;
+	}
+	// Change minutes
+	if (minute > 0 && minute < HOUR)
+	{
+		// Set minutes
+		this -> SetMinute(this -> GetMinute() + minute);
+		// Chech minutes
+		if (this -> _minute >= HOUR)
+		{
+			// How many hours
+			hours = (int)(this -> _minute / HOUR);
+			// MInutes
+			this -> SetMinute(GetMinute() - HOUR * hours);
+			// Hours
+			this -> SetHour(hours);
+			// Check hours
+			if (this -> GetHour() >= DAY)
+			{
+				// How many days
+				days = (int)(this -> GetHour() / DAY);
+				// Hours
+				this -> SetHour(this -> GetHour() - DAY * days);
+			}
+		}
+	}
+	// Change hours
+	if (hour > -DAY && hour < DAY)
+	{
+		// Set hours
+		this -> SetHour(this -> GetHour() + hour);
+		// Invert hour
+		if (this -> GetHour() < 0)
+		{
+			// Set hours
+			this -> SetHour(-(this -> GetHour()));
+		}
+		// Check hours
+		if (this -> GetHour() >= DAY)
+		{
+			// How many days
+			days = (int)(this -> GetHour() / DAY);
+			// Hours
+			this -> SetHour(this -> GetHour() - DAY * days);
+		}
+	}
 }
 
-void Time::ChangeTimeZone(int hour, int minute)
+// Clock change (switch to winter / summer time)
+void Time :: ClockChange()
 {
+	// Variables
+	int days{};
+	// Winner to summer
+	if (this -> GetTypeTime() == 2)
+	{
+		// Set hours
+		this -> SetHour(this -> GetHour() + 1);
+		// Set time type
+		this -> SetTypeTime(1);
+	}
+	// Summer to winner
+	else if (this -> GetTypeTime() == 1)
+	{
+		// Set hours
+		this -> SetHour(this -> GetHour() - 1);
+		// Set time type
+		this -> SetTypeTime(2);
+	}
 }
 
-void Time::ClockChange()
+// Input time
+void Time :: InputTime(int hour, int minute, int second)
 {
+	// Check hours
+	if (hour >= 0 && hour < DAY)
+	{
+		// Set hours
+		this -> SetHour(hour);
+	}
+	// Check minutes
+	if (minute >= 0 && minute < HOUR)
+	{
+		// Set minutes
+		this -> SetMinute(minute);
+	}
+	// Check second
+	if (second >= 0 && second < MINUTE)
+	{
+		// Set seconds
+		this -> SetSecond(second);
+	}
+	// Type clock
+	this -> SetTypeClock(1);
+	// Midday and midnight designations
+	this -> SetAM_PM(0);
+	// Type time
+	this -> SetTypeTime(1);
 }
 
-void Time::InputTime(int hour, int minute, int second)
+// Show time
+void Time :: ShowTime()
 {
-}
-
-void Time::ShowTime()
-{
+	// Print time
+	if (this -> GetTypeClock() == 1)
+	{
+		printf("%02d:%02d:%02d\n", this -> GetHour(), this -> GetMinute(), this -> GetSecond());
+	}
+	else if (this -> GetTypeClock() == 2)
+	{
+		if (this -> GetHour() >= HALF_DAY)
+		{
+			printf("%d:%02d:%02d", this -> GetHour() - HALF_DAY, this -> GetMinute(), this -> GetSecond());
+			printf("%s\n", PM);
+		}
+		else
+		{
+			printf("%d:%02d:%02d", this -> GetHour(), this -> GetMinute(), this -> GetSecond());
+			printf("%s\n", AM);
+		}
+	}
 }
